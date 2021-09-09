@@ -1,10 +1,9 @@
-package com.example.weatherapp
+package com.example.weatherapp.data
 
 import com.google.gson.annotations.SerializedName
 
 
 data class CurrTempInfo(
-
 
     @SerializedName("dt")
         val dt: Int,
@@ -32,8 +31,6 @@ data class CurrTempInfo(
         val wind_speed: Int,
     @SerializedName("wind_deg")
         val wind_deg: Int,
-    //@SerializedName("weather")
-        //val weather: List<Weather>,
-    //@SerializedName("rain")
-        //val rain: Rain
+    @SerializedName("weather")
+        val weatherBody: List<WeatherBody>
 )
