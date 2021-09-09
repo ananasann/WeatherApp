@@ -1,19 +1,15 @@
 package com.example.weatherapp
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.example.weatherapp.data.converter.*
 import com.example.weatherapp.ui.main.SectionsPagerAdapter
 import com.example.weatherapp.databinding.ActivityMainBinding
-import com.example.weatherapp.ui.main.TodayFrag
+import com.example.weatherapp.domain.*
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.gson.GsonBuilder
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,6 +36,16 @@ class MainActivity : AppCompatActivity() {
                 1 -> tab.text = getString(R.string.tab_text_2)
             }
         }.attach()
+
+
+        var builder = GsonBuilder()
+        builder.registerTypeAdapter( Daily::class.java, DailyConverter)
+        builder.registerTypeAdapter(Curr::class.java, CurrConverter)
+        builder.registerTypeAdapter(FeelsL::class.java, FeelsLikeConverter)
+        builder.registerTypeAdapter(TmpI::class.java, TempInfoConverter)
+        builder.registerTypeAdapter(Hourly::class.java, HourlyConverter)
+        builder.registerTypeAdapter(Temp::class.java, TempBodyConverter)
+        builder.registerTypeAdapter(Weather::class.java,WeatherConverter)
 
     }
 }
