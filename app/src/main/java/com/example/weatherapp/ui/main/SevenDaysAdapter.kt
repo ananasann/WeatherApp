@@ -2,15 +2,23 @@ package com.example.weatherapp.ui.main
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.weatherapp.R
 import com.example.weatherapp.data.DailyBody
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.coroutines.coroutineContext
+
 
 class SevenDaysAdapter(
     val context: Context
@@ -30,6 +38,7 @@ class SevenDaysAdapter(
         return MyViewHolder(view, context)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         return holder.bind(mData[position])
     }
@@ -40,26 +49,37 @@ class SevenDaysAdapter(
 
     class MyViewHolder(view: View, context: Context) :
         RecyclerView.ViewHolder(view) {
-        private lateinit var dt:TextView
-        private lateinit var descrDaily:TextView
+        private lateinit var dt: TextView
+        private lateinit var descrDaily: TextView
         private lateinit var dailyIcon: ImageView
         private lateinit var dayTemp: TextView
 
+        @RequiresApi(Build.VERSION_CODES.O)
         @SuppressLint("UseCompatLoadingForDrawables")
         fun bind(dailyBody: DailyBody) {
             dt = itemView.findViewById(R.id.dt)
             descrDaily = itemView.findViewById(R.id.descr_daily)
             dailyIcon = itemView.findViewById(R.id.daily_icon)
             dayTemp = itemView.findViewById(R.id.day_temp)
-            dt.text = dailyBody.dt.toString()
+            dt.text = toLocalDate(dailyBody.dt)
+                .format(DateTimeFormatter.ofPattern("dd LLLL"))
             descrDaily.text = dailyBody.weatherBody[0].description
             dayTemp.text = dailyBody.tempBody.day.toString()
             Glide
                 .with(itemView.context)
-                .load("http://openweathermap.org/img" +
-                        "/wn/${dailyBody.weatherBody[0].icon}@2x.png" )
+                .load("https://img.icons8.com/ios/500/sun--v3.png"
+                    /*"http://openweathermap.org/img" +
+                            "/wn/${dailyBody.weatherBody[0].icon}@2x.png"*/)
+                //не отображаются картинки с апишки
                 .into(dailyIcon)
         }
-    }
 
+        @RequiresApi(Build.VERSION_CODES.O)
+        private fun toLocalDate(value: Int): LocalDateTime {
+            return LocalDateTime.ofInstant(
+                Instant.ofEpochSecond(value.toLong()),
+                TimeZone.getDefault().toZoneId()
+            )
+        }
+    }
 }

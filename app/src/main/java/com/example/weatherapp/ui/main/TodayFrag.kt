@@ -77,7 +77,7 @@ class TodayFrag : Fragment() {
                 description.text = response.body()?.current?.weatherBody?.get(0)?.description
                 Glide
                     .with(requireContext())
-                    .load("https://i.stack.imgur.com/e090f.png"
+                    .load("https://img.icons8.com/ios/500/sun--v3.png"
                         /*"http://openweathermap.org/img/wn/10d@4x.png"*/)
                         //картинки с опенвезер не открываются
                     .error(requireContext().getDrawable(R.drawable.ic_launcher_foreground))
