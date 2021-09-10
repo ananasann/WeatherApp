@@ -14,12 +14,11 @@ object DailyConverter : JsonDeserializer<Daily> {
         context: JsonDeserializationContext?
     ): Daily {
         val body: DailyBody =
-            context?.deserialize<DailyBody>(json, typeOfT)
+            json?.let { context?.deserializeTypedRequired(it) }
                 ?: throw Exception()
 
         return Daily(
             clouds = body.clouds,
-            rain = body.rain,
             tempBody = body.tempBody,
             humidity = body.humidity,
             feels_like = body.feels_like,

@@ -14,15 +14,14 @@ object TempInfoConverter : JsonDeserializer<TmpI> {
         context: JsonDeserializationContext?
     ): TmpI {
         val body: TempInfo =
-            context?.deserialize<TempInfo>(json, typeOfT)
+            json?.let { context?.deserializeTypedRequired(it) }
                 ?: throw Exception()
         return TmpI(
             lat = body.lat,
             lon = body.lon,
             timezone = body.timezone,
             current = body.current,
-            daily = body.daily,
-            hourly = body.hourly
+            daily = body.daily
         )
     }
 

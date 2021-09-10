@@ -38,14 +38,5 @@ class MainActivity : AppCompatActivity() {
         }.attach()
 
 
-        var builder = GsonBuilder()
-        builder.registerTypeAdapter( Daily::class.java, DailyConverter)
-        builder.registerTypeAdapter(Curr::class.java, CurrConverter)
-        builder.registerTypeAdapter(FeelsL::class.java, FeelsLikeConverter)
-        builder.registerTypeAdapter(TmpI::class.java, TempInfoConverter)
-        builder.registerTypeAdapter(Hourly::class.java, HourlyConverter)
-        builder.registerTypeAdapter(Temp::class.java, TempBodyConverter)
-        builder.registerTypeAdapter(Weather::class.java,WeatherConverter)
-
     }
 }

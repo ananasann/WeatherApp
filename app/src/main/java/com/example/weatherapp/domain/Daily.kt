@@ -9,6 +9,5 @@ data class Daily(
     val feels_like: FeelsLike,
     val humidity: Int,
     val weatherBody: List<WeatherBody>,
-    val clouds: Int,
-    val rain: Double
+    val clouds: Int
 )

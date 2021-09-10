@@ -15,8 +15,8 @@ object WeatherConverter:JsonDeserializer<Weather> {
         context: JsonDeserializationContext?
     ): Weather {
         val body: WeatherBody =
-            context?.deserialize<WeatherBody>(json, typeOfT)?:
-            throw Exception()
+            json?.let { context?.deserializeTypedRequired(it) }
+                ?: throw Exception()
         return Weather(
             id = body.id,
             main = body.main,

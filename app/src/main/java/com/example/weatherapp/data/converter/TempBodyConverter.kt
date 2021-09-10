@@ -14,7 +14,7 @@ object TempBodyConverter:JsonDeserializer<Temp> {
         context: JsonDeserializationContext?
     ): Temp {
         val body: TempBody =
-            context?.deserialize<TempBody>(json, typeOfT)
+            json?.let { context?.deserializeTypedRequired(it) }
             ?: throw Exception()
         return Temp(
             day = body.day,

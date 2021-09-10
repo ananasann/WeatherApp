@@ -15,7 +15,7 @@ object CurrConverter : JsonDeserializer<Curr> {
     ): Curr {
 
         val body: CurrTempInfo =
-            context?.deserialize<CurrTempInfo>(json, typeOfT)
+            json?.let { context?.deserializeTypedRequired(it) }
                 ?: throw Exception()
 
         return Curr(

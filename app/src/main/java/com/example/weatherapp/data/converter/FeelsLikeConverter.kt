@@ -14,7 +14,7 @@ object FeelsLikeConverter:JsonDeserializer<FeelsL> {
         context: JsonDeserializationContext?
     ): FeelsL {
         val body: FeelsLike =
-            context?.deserialize<FeelsLike>(json, typeOfT)
+            json?.let { context?.deserializeTypedRequired(it) }
                 ?: throw Exception()
         return FeelsL(
             day = body.day,

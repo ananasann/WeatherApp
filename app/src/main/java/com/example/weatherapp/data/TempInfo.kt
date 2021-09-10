@@ -14,8 +14,6 @@ data class TempInfo (
 		val timezone_offset : Int,
 	@SerializedName("current")
 		val current : CurrTempInfo,
-	@SerializedName("hourly")
-		val hourly : List<HourlyBody>,
 	@SerializedName("daily")
 		val daily : List<DailyBody>
 )
