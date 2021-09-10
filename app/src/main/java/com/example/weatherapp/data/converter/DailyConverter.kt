@@ -18,10 +18,8 @@ object DailyConverter : JsonDeserializer<Daily> {
                 ?: throw Exception()
 
         return Daily(
-            clouds = body.clouds,
+            dt = body.dt,
             tempBody = body.tempBody,
-            humidity = body.humidity,
-            feels_like = body.feels_like,
             weatherBody = body.weatherBody
         )
     }

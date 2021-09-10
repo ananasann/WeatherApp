@@ -5,9 +5,7 @@ import com.example.weatherapp.data.TempBody
 import com.example.weatherapp.data.WeatherBody
 
 data class Daily(
+    val dt : Int,
     val tempBody: TempBody,
-    val feels_like: FeelsLike,
-    val humidity: Int,
-    val weatherBody: List<WeatherBody>,
-    val clouds: Int
+    val weatherBody: List<WeatherBody>
 )
