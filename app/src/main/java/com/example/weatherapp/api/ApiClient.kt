@@ -1,6 +1,5 @@
 package com.example.weatherapp.api
 
-import com.example.weatherapp.api.ApiClient.getBuilder
 import com.example.weatherapp.data.converter.*
 import com.example.weatherapp.domain.*
 import com.google.gson.GsonBuilder

@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="tab_text_0">Поиск</string>
     <string name="tab_text_1">Сегодня</string>
     <string name="tab_text_2">7 дней</string>
+    <string name="feels">Feels like</string>
+    <string name="vlaj">Humidity</string>
+    <string name="davl">Pressure</string>
+    <string name="cels">°C</string>
 </resources>
